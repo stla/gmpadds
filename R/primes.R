@@ -59,8 +59,11 @@ squarefreenums <- function(n, Nmax=Inf){
       out[j] <- i
       if(out[j]>Nmax) return(out[1:(j-1L)])
     }
-    primes <- c(primes, nextprime(primes[i-1]))
-    prodprimes <- prod(primes)
+    nprime <- nextprime(primes)
+    prodprimes <- prodprimes*nprime
+    primes <- nprime
+#    primes <- c(primes, nextprime(primes[i-1]))
+#    prodprimes <- prod(primes)
     i <- i+1L
   }
   return(out[1:j])

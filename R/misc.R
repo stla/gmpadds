@@ -44,3 +44,22 @@ cumprod.bigq <- function(x){
 divides <- function(k,n){
   as.bigz(n/k)*k == n
 }
+
+
+#' Convert a bigq matrix to a numeric matrix
+#'
+#' @export
+#' @param M \code{bigq} matrix
+#' @return the matrix \code{M} in numeric mode
+#' @examples
+#' library(gmp)
+#' M <- matrix(c(as.bigq(c(1,2,0),3), as.bigq(c(0,2,1),3)), nrow=2, byrow=TRUE)
+#' M
+#' bigqmatrix2num(M)
+bigqmatrix2num <- function(M){
+  out <- matrix(numeric(length(M)), nrow=dim(M)[1], ncol=dim(M)[2])
+  for(i in 1:nrow(out)){
+    out[i,] <- as.numeric(M[i,])
+  }
+  return(out)
+}
